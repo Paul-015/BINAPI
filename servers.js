@@ -1,17 +1,13 @@
-require('dotenv').config(); // Charge les variables d'environnement à partir du fichier .env
+require('dotenv').config(); 
 
-const express = require('express'); // Importation du module Express
+const express = require('express'); 
+const app = express(); 
+const port = process.env.PORT || 3000; 
 
-const app = express(); // Crée une application Express
-
-const port = process.env.PORT || 3000; // Utilise la variable d'environnement PORT ou 3000 par défaut
-
-// Route de base
 app.get('/', (req, res) => {
-  res.send('Hello, world!'); // Envoie une réponse simple
+  res.send('Hello, world!'); 
 });
 
-// Démarrage du serveur sur le port spécifié
 app.listen(port, () => {
-  console.log(`Server est en écoute sur le port ${port}`); // Affiche un message dans la console
+  console.log(`Server est en écoute sur le port ${port}`); 
 });
