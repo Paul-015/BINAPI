@@ -5,11 +5,19 @@ module.exports = {
         res.json(users);
     },
     create: (req, res, next) => {
-        const user = req.body;
+        let data ="";
+        req.on("data", (chunk) => (data += chunk.toString()));
+        req.on("end", () => {
+        if (req.headers["content-type"] === "application/json"){
+            data = JSON.parse(data);
+        }
+    
+        const user = data;
         user.id = Date.now();
         users.push(user);
-
         res.status(201).json(user);
+    });
+      
 
 
 
@@ -27,7 +35,7 @@ module.exports = {
         if (!user) return  res.sendStatus(404);
         Object.assign(user, req.body);
         res.json(user);
-        
+
 
     },
     delete: (req, res, next) => {
