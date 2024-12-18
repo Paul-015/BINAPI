@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+  db:
+    image: mysql:8.0 # Utilisez une version compatible avec vos besoins
+    container_name: mysql_container
+    ports:
+      - "3307:3307" # Expose le port 3306 pour les connexions locales
+    environment:
+      MYSQL_ROOT_PASSWORD: example # Mot de passe root
+      MYSQL_DATABASE: mydatabase  # Base de données initiale
+      MYSQL_USER: myuser          # Utilisateur de la base de données
+      MYSQL_PASSWORD: mypassword  # Mot de passe pour l'utilisateur
+    volumes:
+      - mysql_data:/var/lib/mysql # Volume pour persister les données
+
+volumes:
+  mysql_data:
