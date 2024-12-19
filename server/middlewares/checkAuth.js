@@ -30,6 +30,7 @@ module.exports = async (req, res, next) => {
 
         req.user = { id: user.id, username: user.username, role: user.role };
 
+
         next();
     } catch (error) {
         console.error("Erreur d'authentification JWT :", error.message);
