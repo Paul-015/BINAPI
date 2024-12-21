@@ -1,16 +1,30 @@
 const express = require("express");
-const userRouteur  = require("./routes/user"); // routes déclarés mais pas de fonction donc 'cannot get'
+const dotenv = require("dotenv");
 
-require('dotenv').config();
+// Import des routes
+const authRoutes = require("./routes/authRoutes");
+const userRouter = require("./routes/user");
+const animalRouter = require("./routes/animal");
+const securityRouter = require("./routes/security");
 
+// Configuration de l'application
+dotenv.config();
 const app = express();
+const PORT = process.env.PORT || 3000; // Définit un port par défaut si non spécifié dans .env
 
-app.get("/", (request, response, next) => {
-    response.send("Hello world !!");
-  });
-  
-app.use(userRouteur);
+app.use(express.json()); // Middleware pour analyser les données JSON
 
-app.listen(process.env.PORT, () =>
-    console.log("Server listening on port " + process.env.PORT)
-  );
+// Routes
+app.get("/", (req, res) => {
+  res.send("Hello world !!");
+});
+
+app.use("/api/auth", authRoutes); // Route d'authentification
+app.use(userRouter); // Route utilisateur
+app.use(animalRouter); // Route animal
+app.use(securityRouter); // Route sécurité
+
+// Démarrage du serveur
+app.listen(PORT, () => {
+  console.log(`Serveur démarré sur le port ${PORT}`);
+});
