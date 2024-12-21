@@ -12,18 +12,20 @@ module.exports = (req, res, next) => {
         if (req.headers["content-type"]?.includes("application/json")) {
           req.body = JSON.parse(data);
         } else {
-          req.body = data; 
+          req.body = data;
         }
+        next();
       } catch (error) {
         console.error("Erreur de parsing du corps de la requête :", error.message);
-        return res.status(400).json({ message: "Données JSON invalides" });
+        error.statusCode = 400; 
+        next(error);
       }
-  
-      next();
     });
   
     req.on("error", (error) => {
       console.error("Erreur lors de la lecture du corps de la requête :", error.message);
-      return res.status(500).json({ message: "Erreur serveur lors de la lecture des données" });
+      error.statusCode = 500; 
+      next(error);
     });
   };
+  

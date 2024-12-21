@@ -4,7 +4,13 @@ const userController = require("../controllers/userController");
 const router = new Router();
 
 router.get("/users", userController.getAll);
+<<<<<<< HEAD
 router.post("/users", userController.create);
+=======
+
+router.post("/register", userController.create);
+
+>>>>>>> f04aadca12870ffbf970388d8f9753d56b206da3
 router.get("/users/:id", userController.getOne);
 router.patch("/users/:id", userController.update);
 router.delete("/users/:id", userController.delete);
