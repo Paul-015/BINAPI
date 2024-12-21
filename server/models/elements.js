@@ -1,13 +1,13 @@
 const { Model, DataTypes } = require("sequelize");
 const connection = require("./db");
 
-class Animal extends Model {}
+class Element extends Model {}
 
-Animal.init(
+Element.init(
   {
     name: DataTypes.STRING,
     race: {
-      type: DataTypes.ENUM("chien", "chat", "souris"),
+      type: DataTypes.ENUM("mercure", "chrome", "argent"),
     },
     birthday: {
       type: DataTypes.DATEONLY,
@@ -19,4 +19,4 @@ Animal.init(
   }
 );
 
-module.exports = Animal;
+module.exports = Element;

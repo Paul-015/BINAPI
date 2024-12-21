@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-const db = require("../config/db");
+const bcrypt = require("bcryptjs");
 
 // Inscription d'un utilisateur
 exports.register = (req, res) => {

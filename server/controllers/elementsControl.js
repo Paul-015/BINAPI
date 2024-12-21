@@ -1,71 +1,29 @@
-// Importer la base de données ou tout autre module nécessaire
-const db = require("../config/db");
+// controllers/elementsControl.js
 
-// Contrôleur pour récupérer tous les éléments
-exports.getAllElements = (req, res) => {
-    const query = "SELECT * FROM elements";
-    db.query(query, (err, results) => {
-        if (err) {
-            return res.status(500).json({ error: "Erreur lors de la récupération des éléments." });
-        }
-        res.status(200).json(results);
-    });
+exports.getAll = (req, res) => {
+    // Logique pour récupérer tous les éléments
+    res.json({ message: "Tous les éléments récupérés" }); // Exemple de réponse
 };
 
-// Contrôleur pour récupérer un élément spécifique par son ID
-exports.getElementById = (req, res) => {
-    const { id } = req.params;
-    const query = "SELECT * FROM elements WHERE id = ?";
-    db.query(query, [id], (err, results) => {
-        if (err) {
-            return res.status(500).json({ error: "Erreur lors de la récupération de l'élément." });
-        }
-        if (results.length === 0) {
-            return res.status(404).json({ message: "Élément non trouvé." });
-        }
-        res.status(200).json(results[0]);
-    });
+exports.create = (req, res) => {
+    // Logique pour créer un nouvel élément
+    res.status(201).json({ message: "Élément créé" }); // Exemple de réponse
 };
 
-// Contrôleur pour créer un nouvel élément
-exports.createElement = (req, res) => {
-    const { name, symbol, atomicNumber } = req.body;
-    const query = "INSERT INTO elements (name, symbol, atomicNumber) VALUES (?, ?, ?)";
-    db.query(query, [name, symbol, atomicNumber], (err, result) => {
-        if (err) {
-            return res.status(500).json({ error: "Erreur lors de la création de l'élément." });
-        }
-        res.status(201).json({ message: "Élément créé avec succès.", id: result.insertId });
-    });
+exports.getOne = (req, res) => {
+    const id = req.params.id;
+    // Logique pour récupérer un élément par ID
+    res.json({ message: `Élément avec l'ID ${id} récupéré` }); // Exemple de réponse
 };
 
-// Contrôleur pour mettre à jour un élément
-exports.updateElement = (req, res) => {
-    const { id } = req.params;
-    const { name, symbol, atomicNumber } = req.body;
-    const query = "UPDATE elements SET name = ?, symbol = ?, atomicNumber = ? WHERE id = ?";
-    db.query(query, [name, symbol, atomicNumber, id], (err, result) => {
-        if (err) {
-            return res.status(500).json({ error: "Erreur lors de la mise à jour de l'élément." });
-        }
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Élément non trouvé." });
-        }
-        res.status(200).json({ message: "Élément mis à jour avec succès." });
-    });
+exports.update = (req, res) => {
+    const id = req.params.id;
+    // Logique pour mettre à jour un élément par ID
+    res.json({ message: `Élément avec l'ID ${id} mis à jour` }); // Exemple de réponse
 };
 
-// Contrôleur pour supprimer un élément
-exports.deleteElement = (req, res) => {
-    const { id } = req.params;
-    const query = "DELETE FROM elements WHERE id = ?";
-    db.query(query, [id], (err, result) => {
-        if (err) {
-            return res.status(500).json({ error: "Erreur lors de la suppression de l'élément." });
-        }
-        if (result.affectedRows === 0) {
-            return res.status(404).json({ message: "Élément non trouvé." });
-        }
-        res.status(200).json({ message: "Élément supprimé avec succès." });
-    });
+exports.delete = (req, res) => {
+    const id = req.params.id;
+    // Logique pour supprimer un élément par ID
+    res.status(204).send(); // Retourner un statut 204 No Content
 };
