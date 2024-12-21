@@ -1,47 +1,17 @@
-const User = require("../models/users");
+const express = require("express");
+const router = express.Router();
+const authController = require("../controllers/authController");
+const elementsController = require("../controllers/elementsController");
 
-module.exports = {
-  getAll: async (req, res, next) => {
-    if (req.user.role !== "ROLE_ADMIN") return res.sendStatus(403);
-    res.json(await User.findAll());
-  },
-  create: async (req, res, next) => {
-    res.status(201).json(await User.create(req.body));
-  },
-  getOne: async (req, res, next) => {
-    const user = await User.findByPk(parseInt(req.params.id));
-    if (user) {
-      res.json(user);
-    } else {
-      res.sendStatus(404);
-    }
-  },
-  update: async (req, res, next) => {
-    /**
-     * const user = await User.findByPk(req.params.id);
-     * user.password = 'toto';
-     * await user.save()
-     */
-    const nbUpdated = await User.update(req.body, {
-      where: {
-        id: parseInt(req.params.id),
-      },
-      individualHooks: true,
-      //returning: true
-    });
-    if (!nbUpdated) return res.sendStatus(404);
+// Routes d'authentification
+router.post("/register", authController.register);
+router.post("/login", authController.login);
 
-    res.json(await User.findByPk(parseInt(req.params.id)));
-  },
-  delete: async (req, res, next) => {
-    if (req.user.id !== parseInt(req.params.id)) return res.sendStatus(403);
+// Routes des éléments protégées par authentification
+router.get("/elements", authController.authenticate, elementsController.getAllElements);
+router.get("/elements/:id", authController.authenticate, elementsController.getElementById);
+router.post("/elements", authController.authenticate, elementsController.createElement);
+router.put("/elements/:id", authController.authenticate, elementsController.updateElement);
+router.delete("/elements/:id", authController.authenticate, elementsController.deleteElement);
 
-    const nbDeleted = await User.destroy({
-      where: {
-        id: parseInt(req.params.id),
-      },
-    });
-
-    res.sendStatus(nbDeleted ? 204 : 404);
-  },
-};
+module.exports = router;
