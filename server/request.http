@@ -39,25 +39,25 @@ Content-Type: application/json
   "password": "$2a$10$Hw7k9DxzMM0PTQ77Zjy4g.XYBANBxwaQZ3.D2KwyqJTCtKua4MUru"
 }
 
-### GET animals
-GET http://localhost:3000/animals
+### GET elements
+GET http://localhost:3000/elements
 ###
-POST http://localhost:3000/animals
+POST http://localhost:3000/elements
 Content-Type: application/json
 
 {
-  "name": "Bobby",
-  "race": "chien",
-  "birthday": "2018-01-01"
+  "name": "Mercure",
+  "categorie": "méteaux de transition",
+  "decouverte": "1500 av J.C"
 }
 ###
-PATCH http://localhost:3000/animals/1
+PATCH http://localhost:3000/elements/1
 Content-Type: application/json
 
 {
-  "race": "chat"
+  "race": "méteaux de transition"
 }
 ###
-GET http://localhost:3000/animals/1
+GET http://localhost:3000/elements/1
 ###
-DELETE http://localhost:3000/animals/1
+DELETE http://localhost:3000/elements/1
