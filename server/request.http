@@ -14,7 +14,7 @@ Content-Type: application/json
   "role": "ROLE_ADMIN"
 }
 
-### GET a user
+### GET a user  
 GET http://localhost:3000/users/1
 
 ### PATCH a user
@@ -30,7 +30,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6I
 DELETE http://localhost:3000/users/2
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNzMwODI2NTU5fQ.U4b3KbZVxUx5YCvH5otB6ILYYdimspDHptHRzVnPJlQ
 
-###
+### 
 POST http://localhost:3000/login
 Content-Type: application/json
 
