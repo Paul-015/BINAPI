@@ -9,7 +9,7 @@ services:
       - 3000:3000
     environment:
       PORT: 3000
-      DATABASE_URL: "mysql://root:password@db/app"
+      DATABASE_URL: "mysql://root:password@server-db-1/app"
       JWT_SECRET: "secret"
     depends_on:
       - db
