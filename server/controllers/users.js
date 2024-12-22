@@ -11,25 +11,21 @@ router.get("/elements/:id", authController.authenticate, elementsController.getE
 router.post("/elements", authController.authenticate, elementsController.createElement);
 router.put("/elements/:id", authController.authenticate, elementsController.updateElement);
 router.delete("/elements/:id", authController.authenticate, elementsController.deleteElement);
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const db = require("../config/database"); // Remplacez par votre config si différente
 
-// Fonction pour créer un utilisateur
 const createUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
-    // Vérification si l'email existe déjà
     const [existingUser] = await db.query("SELECT * FROM users WHERE email = ?", [email]);
     if (existingUser.length > 0) {
       return res.status(400).json({ message: "Email already in use." });
     }
 
-    // Hachage du mot de passe
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Insertion du nouvel utilisateur dans la base de données
     await db.query(
       "INSERT INTO users (username, email, password) VALUES (?, ?, ?)",
       [username, email, hashedPassword]

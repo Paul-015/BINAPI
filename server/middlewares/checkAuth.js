@@ -9,10 +9,12 @@ module.exports = async (req, res, next) => {
     }
 
     const token = headerValue.split(" ")[1];
+    console.log("Jeton reçu :", token); // Log du jeton pour vérifier sa valeur
+    
+    // Vérification du jeton avec la clé secrète
     const payload = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("Token payload :", payload);  // Ajoute ceci pour vérifier le contenu du token
-
-
+    console.log("Token payload :", payload);  // Log du payload pour vérifier
+    
     const user = await User.findByPk(payload.id);
     if (!user || !user.activated) {
       return res.status(401).json({ error: "Utilisateur introuvable ou désactivé" });
@@ -22,6 +24,6 @@ module.exports = async (req, res, next) => {
     next();
   } catch (error) {
     console.error("Erreur d'authentification :", error.message);
-    res.status(401).json({ error: "Authentification échouée" });
+    res.status(403).json({ error: "Jeton invalide" });
   }
 };

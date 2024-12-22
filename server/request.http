@@ -5,6 +5,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6I
 
 ### POST users
 POST http://localhost:4000/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNzMxOTUwNjkwfQ.jrf2Kdn_v4EgvXryThS4ebrH93joOIIMW55GieyTmFY
 
 Content-Type: application/json
 
@@ -59,6 +60,6 @@ Content-Type: application/json
   "race": "méteaux de transition"
 }
 ###
-GET http://localhost:3000/elements/1
+GET http://localhost:4000/elements/1
 ###
-DELETE http://localhost:3000/elements/1
+DELETE http://localhost:4000/elements/1

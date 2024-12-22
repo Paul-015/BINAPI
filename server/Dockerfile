@@ -13,7 +13,7 @@ RUN npm install
 COPY . .
 
 # Exposez le port 3000
-EXPOSE 3000
+EXPOSE 4000
 
 # Commande pour démarrer l'application
 CMD ["npm", "start"]
