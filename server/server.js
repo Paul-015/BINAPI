@@ -10,7 +10,7 @@ const errorHandler = require("./middlewares/errorHandler");
 
 const authRoutes = require("./routes/authRoutes");
 const userRouter = require("./routes/user");
-const elementsRouter = require("./routes/elements"); // Changez cela pour correspondre au nom de votre route
+const elementsRouter = require("./routes/elements"); 
 const securityRouter = require("./routes/security");
 
 
