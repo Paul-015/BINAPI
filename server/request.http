@@ -1,10 +1,11 @@
 
 ### GET users
-GET http://localhost:3000/users
+GET http://localhost:4000/users
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNzMxOTUwNjkwfQ.jrf2Kdn_v4EgvXryThS4ebrH93joOIIMW55GieyTmFY
 
 ### POST users
-POST http://localhost:3000/users
+POST http://localhost:4000/users
+
 Content-Type: application/json
 
 {
@@ -15,10 +16,10 @@ Content-Type: application/json
 }
 
 ### GET a user  
-GET http://localhost:3000/users/1 
+GET http://localhost:4000/users/1 
 
 ### PATCH a user
-PATCH http://localhost:3000/users/1
+PATCH http://localhost:4000/users/1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNzMxOTUwNjkwfQ.jrf2Kdn_v4EgvXryThS4ebrH93joOIIMW55GieyTmFY
 
@@ -27,22 +28,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6I
 }
 
 ### DELETE a user
-DELETE http://localhost:3000/users/2
+DELETE http://localhost:4000/users/2
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNzMwODI2NTU5fQ.U4b3KbZVxUx5YCvH5otB6ILYYdimspDHptHRzVnPJlQ
 
 ### 
-POST http://localhost:3000/login
+POST http://localhost:4000/login
 Content-Type: application/json
 
 {
-  "email": "j@d.com",
-  "password": "$2a$10$Hw7k9DxzMM0PTQ77Zjy4g.XYBANBxwaQZ3.D2KwyqJTCtKua4MUru"
+  "email": "j@dd.com",
+  "password": "12Az!3456"
 }
 
 ### GET elements
-GET http://localhost:3000/elements
+GET http://localhost:4000/elements
 ###
-POST http://localhost:3000/elements
+POST http://localhost:4000/elements
 Content-Type: application/json
 
 {
@@ -51,7 +52,7 @@ Content-Type: application/json
   "decouverte": "1500 av J.C"
 }
 ###
-PATCH http://localhost:3000/elements/1
+PATCH http://localhost:4000/elements/1
 Content-Type: application/json
 
 {

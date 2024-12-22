@@ -1,6 +1,6 @@
 const connection = require("./models/db");
-require("./models/user");
-require("./models/animal");
+require("./models/users");
+require("./models/elements");
 
 connection
   .sync({

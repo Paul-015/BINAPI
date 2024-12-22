@@ -6,11 +6,11 @@ services:
     working_dir: /app
     command: npm run dev
     ports:
-      - 3000:3000
+      - 4000:4000
     environment:
-      PORT: 3000
+      PORT: 4000
       DATABASE_URL: "mysql://root:password@server-db-1/app"
-      JWT_SECRET: "secret"
+      JWT_SECRET: "supersecretkey"
     depends_on:
       - db
 

@@ -1,5 +1,8 @@
 const express = require("express");
 const dotenv = require("dotenv");
+dotenv.config();
+console.log("JWT_SECRET chargé :", process.env.JWT_SECRET);
+
 
 const parseBody = require("./middlewares/parseBody");
 const checkAuth = require("./middlewares/checkAuth");
@@ -11,54 +14,43 @@ const elementsRouter = require("./routes/elements"); // Changez cela pour corres
 const securityRouter = require("./routes/security");
 
 
-// Charger les variables d'environnement depuis .env
-dotenv.config();
+
 
 const app = express();
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 4000;
 
 
 app.use(express.json()); 
-// Middleware pour analyser les données JSON
-app.use(express.json()); 
 
-// Middlewares personnalisés
-app.use(parseBody);  // Middleware de parsing du corps de la requête
-app.use(checkAuth);  // Middleware d'authentification
+app.use(parseBody);  
+app.use(checkAuth);  
 
 app.get("/", (req, res) => {
   res.send("Hello world !!");
 });
 
 app.use("/api/auth", authRoutes);
-app.use("/api/users", userRouter); 
+app.use("/users", userRouter);
 app.use("/api/elements", elementsRouter); 
 app.use("/api/security", securityRouter); 
 
 
-// Middleware pour les routes non trouvées (404)
 app.use((req, res, next) => {
-  const error = new Error("Route introuvable");
-  error.statusCode = 404;
-  next(error);
+  res.status(404).send({ error: `Route ${req.method} ${req.url} not found.` });
 });
 
-// Middleware global de gestion des erreurs
 app.use(errorHandler);
 
-// Gestion des erreurs non capturées (exceptions)
 process.on("uncaughtException", (err) => {
   console.error("Erreur non capturée :", err.message);
   console.error(err.stack);
-  process.exit(1); // Quitter le processus proprement
+  process.exit(1); 
 });
 
-// Gestion des promesses rejetées non gérées
 process.on("unhandledRejection", (reason, promise) => {
   console.error("Promesse non gérée rejetée :", reason);
 });
 
-// Démarrage du serveur
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);

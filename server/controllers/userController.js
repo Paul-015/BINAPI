@@ -12,7 +12,7 @@ exports.create = (req, res) => {
 
 exports.getOne = (req, res) => {
     const userId = req.params.id;
-    const user = users.find(u => u.id === userId); 
+    const user = users.find(u => u.id === Number(userId));  
     if (user) {
         res.json(user); 
     } else {

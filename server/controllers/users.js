@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
@@ -12,7 +11,6 @@ router.get("/elements/:id", authController.authenticate, elementsController.getE
 router.post("/elements", authController.authenticate, elementsController.createElement);
 router.put("/elements/:id", authController.authenticate, elementsController.updateElement);
 router.delete("/elements/:id", authController.authenticate, elementsController.deleteElement);
-=======
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const db = require("../config/database"); // Remplacez par votre config si différente
@@ -27,7 +25,6 @@ const createUser = async (req, res) => {
     if (existingUser.length > 0) {
       return res.status(400).json({ message: "Email already in use." });
     }
->>>>>>> f04aadca12870ffbf970388d8f9753d56b206da3
 
     // Hachage du mot de passe
     const hashedPassword = await bcrypt.hash(password, 10);

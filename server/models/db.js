@@ -1,6 +1,6 @@
 const { Sequelize } = require("sequelize");
 
-const defaultURL = "mysql://username:password@db-1/dbname";
+const defaultURL = "mysql://username:password@server-db-1/express_mysql";
 
 const connection = new Sequelize(process.env.DATABASE_URL ?? defaultURL);
 
