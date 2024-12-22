@@ -9,7 +9,11 @@ const errorHandler = require("./middlewares/errorHandler");
 
 const authRoutes = require("./routes/authRoutes");
 const userRouter = require("./routes/user");
+<<<<<<< HEAD
 const elementsRouter = require("./routes/elements");
+=======
+const elementsRouter = require("./routes/elements"); 
+>>>>>>> 186c6040f9c49636c83cdab29db3f0cb1f227eb7
 const securityRouter = require("./routes/security");
 
 const app = express();
